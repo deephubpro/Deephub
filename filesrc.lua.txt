@@ -1,47 +1,29 @@
 
-loadstring(game:HttpGet(("https://raw.githubusercontent.com/daucobonhi/Ui-Redz-V2/refs/heads/main/UiREDzV2.lua")))()
 
-       local Window = MakeWindow({
-         Hub = {
-         Title = "DEEP HUB - MEME SEA",
-         Animation = "DEEP HUB LOADDING"
-         },
-        Key = {
-        KeySystem = true,
-        Title = "Key System",
-        Description = "MEME SEA - DEEP HUB",
-        KeyLink = "IMGAYPREIUM",
-        Keys = {"IMGAYPREIUM"},
-        Notifi = {
-        Notifications = true,
-        CorrectKey = "SUCCESS",
-       Incorrectkey = "WRONG KEY",
-       CopyKeyLink = "Copied to Clipboard"
-      }
-    }
-  })
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
+--------------------------------------------------------------------------------------------------------------------------------------------
+local Window = Fluent:CreateWindow({
+    --ai skid thì nhớ đổi tên =)
+    --táo hub , aniee hub :>
+    Title = "DEEP HUB",
+    SubTitle = "V1 [ PREMIUM ]",
+    TabWidth = 160,
+    Size = UDim2.fromOffset(530, 350),
+    Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
+    Theme = "",
+    MinimizeKey = Enum.KeyCode.End -- Used when theres no MinimizeKeybind
+})
+local Tabs = {
+    Main = Window:AddTab({ Title = "Main Farm", Icon = "home" }),
+}
 
-       MinimizeButton({
-       Image = "rbxthumb://type=Asset&id=90555031068147&w=420&h=420",
-       Size = {40, 40},
-       Color = Color3.fromRGB(10, 10, 10),
-       Corner = true,
-       Stroke = false,
-       StrokeColor = Color3.fromRGB(255, 0, 0)
-      })
-      
------- Tab
-     local Tab1o = MakeTab({Name = "SCRIPT GAME"})
-     local Tab2o = MakeTab({Name = "SETTING MENU"})
-   
-Toggle = AddToggle(Tab1o, {
-      Name = "Farm",
-      Default = false,
-      Callback = function()
-      CheckQuest() 
-     end
-    })
-    
+local ToggleMirageIsland = Tabs.Main:AddToggle("ToggleMirageIsland", {Title = "Find Mirage Island", Default = false })
+ToggleMirageIsland:OnChanged(function(Value)
+    _G.FindMirageIsland = Value
+     CheckQuest()
+end
 
 function CheckQuest() 
     MyLevel = game:GetService("Players").LocalPlayer.Data.Level.Value
